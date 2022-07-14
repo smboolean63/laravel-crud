@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -37,7 +37,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // recuperiamo tutti i dati del form
+        $data = $request->all();
+
+        // creiamo un oggetto Product
+        $newProduct = new Product();
+        // compiliamo tutte le proprietà con i dati del form
+        // $newProduct->title = $data['title'];
+        // $newProduct->type = $data['type'];
+        // $newProduct->cooking_time = $data['cooking_time'];
+        // $newProduct->weight = $data['weight'];
+        // $newProduct->description = $data['description'];
+        // $newProduct->image = $data['image'];
+        // $newProduct->price = $data['price'];
+        $newProduct->fill($data);
+        // inseriamo il nuovo record a DB
+        $newProduct->save();
+        // rindirizziamo alla pagina del prodotto appena creato
+        return redirect()->route('products.show', $newProduct->id);
     }
 
     /**

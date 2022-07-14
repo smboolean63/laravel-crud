@@ -20,7 +20,7 @@
             @foreach ($products as $product)
                 <tr>
                     <td>{{$product->id}}</td>
-                    <td><img width="100" src="{{$product->image}}"></td>
+                    <td><img width="100" src="{{$product->image ? $product->image : 'https://media.gettyimages.com/photos/pasta-variation-picture-id185065945'}}"></td>
                     <td>{{$product->title}}</td>
                     <td>{{$product->type}}</td>
                     <td>

@@ -14,7 +14,7 @@
         <li>Tempo cottura: {{$product->cooking_time}}</li>
         <li>Peso: {{$product->weight}}</li>
    </ul>
-   <h3>Prezzo: {{$product->price}}</h3>
+   <h3>Prezzo: {{$product->price}} €</h3>
    <p>
     <a href="{{route('products.index')}}">Torna alla pagina dei prodotti</a>
    </p>

@@ -37,6 +37,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // validazione
+        $request->validate([
+            'title' => 'required|max:80',
+            'type' => 'required|max:50',
+            'cooking_time' => 'required|integer|max:255',
+            'weight' => 'required|integer|max:10000',
+            'description' => 'required',
+            'image' => 'nullable|max:255',
+            'price' => 'required|numeric|max:99.99',
+        ]);
         // recuperiamo tutti i dati del form
         $data = $request->all();
 
@@ -74,9 +84,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -86,9 +96,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->all();
+
+        $product->update($data);
+
+        return redirect()->route('products.show', $product->id);
     }
 
     /**
@@ -97,8 +111,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }

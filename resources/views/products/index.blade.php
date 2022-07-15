@@ -25,6 +25,12 @@
                     <td>{{$product->type}}</td>
                     <td>
                         <a class="btn btn-primary" href="{{route('products.show', $product->id)}}">Visualizza</a>
+                        <a href="{{route('products.edit', $product->id)}}" class="btn btn-warning">Modifica</a>
+                        <form action="{{route('products.destroy', $product->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Cancella</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

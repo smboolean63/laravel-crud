@@ -46,9 +46,21 @@
 
         <div class="mb-3">
             <label for="price" class="form-label">Prezzo</label>
-            <input type="number" class="form-control" id="price" name="price">
+            <input type="number" class="form-control" id="price" name="price" step="any">
         </div>
 
         <button type="submit" class="btn btn-primary">Crea</button>
     </form>
+
+    @if ($errors->any())
+        <div class="alert alert-danger mt-5">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>
+                    {{$error}}
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endsection
